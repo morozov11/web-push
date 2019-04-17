@@ -15,12 +15,12 @@ import scala.concurrent.duration._
   * Push service.
   */
 case class PushServiceSync(publicKey: ECPublicKey, privateKey: ECPrivateKey, subject: String, exp: FiniteDuration = 12.hours)
-  extends PushService[Id, HttpResponse] with RequestBuilder {
+  extends HttpPostRequest[Id, HttpResponse] with RequestBuilder {
 
   private val httpClient: HttpClient = HttpClients.createDefault
 
 
-  protected def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int) = {
+  def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int): HttpResponse = {
 
     val httpPost = new HttpPost(subscription.endpoint)
 

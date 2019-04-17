@@ -2,7 +2,7 @@ package org.morozov.webpush
 import scala.language.higherKinds
 
 
-trait PushService[F[_], R] {
+class PushService[F[_], R]() {
 
   protected val defaultTtl: Int = 2419200
 
@@ -12,7 +12,8 @@ trait PushService[F[_], R] {
     * @param subscription Browser subscription object.
     * @return HttpResponse from push server.
     */
-  def send(subscription: Subscription): F[R] = send(subscription, None, defaultTtl)
+  def send(subscription: Subscription)(implicit ev: HttpPostRequest[F,R]): F[R] =
+    send(subscription, None, defaultTtl)
 
   /**
     * Send a data free push notification.
@@ -22,7 +23,8 @@ trait PushService[F[_], R] {
     *                     and attempt to deliver it.
     * @return HttpResponse from push server.
     */
-  def send(subscription: Subscription, ttl: Int): F[R] = send(subscription, None, ttl)
+  def send(subscription: Subscription, ttl: Int)(implicit ev: HttpPostRequest[F,R]): F[R] =
+    send(subscription, None, ttl)
 
   /**
     * Sends a data bearing push notification.
@@ -33,9 +35,11 @@ trait PushService[F[_], R] {
     *                     and attempt to deliver it. If not specified default value will be used.
     * @return HttpResponse from push server.
     */
-  def send(subscription: Subscription, payload: String, ttl: Int): F[R] = send(subscription, Some(payload.getBytes), ttl)
+  def send(subscription: Subscription, payload: String, ttl: Int)(implicit ev: HttpPostRequest[F,R]): F[R] =
+    send(subscription, Some(payload.getBytes), ttl)
 
-  def send(subscription: Subscription, payload: String): F[R] = send(subscription, Some(payload.getBytes), defaultTtl)
+  def send(subscription: Subscription, payload: String)(implicit ev: HttpPostRequest[F,R]): F[R] =
+    send(subscription, Some(payload.getBytes), defaultTtl)
 
   /**
     *
@@ -47,9 +51,12 @@ trait PushService[F[_], R] {
     *                     and attempt to deliver it. If not specified default value will be used.
     * @return HttpResponse from push server.
     */
-  def send(subscription: Subscription, payload: Array[Byte], ttl: Int = defaultTtl): F[R] = send(subscription, Some(payload), ttl)
+  def send(subscription: Subscription, payload: Array[Byte], ttl: Int = defaultTtl)(implicit ev: HttpPostRequest[F,R]): F[R] =
+    send(subscription, Some(payload), ttl)
 
-  protected def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int): F[R]
+  protected def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int)(implicit ev: HttpPostRequest[F,R]): F[R] = {
+    ev.send(subscription, payload, ttl)
+  }
 
 
 }
