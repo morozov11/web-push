@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   "org.apache.httpcomponents" % "fluent-hc" % "4.5.2",
   "org.bouncycastle" % "bcprov-jdk15on" % "1.55",
   "com.typesafe.akka" %% "akka-actor" % "2.5.22",
-  "com.typesafe.akka" %% "akka-http" % "10.1.8"
+  "com.typesafe.akka" %% "akka-http" % "10.1.8",
+  "com.typesafe.akka" %% "akka-stream" % "2.5.22"
 )
 
 publishTo := {
