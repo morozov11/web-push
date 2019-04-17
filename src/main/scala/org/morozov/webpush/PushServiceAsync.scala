@@ -16,11 +16,9 @@ case class PushServiceAsync(publicKey: ECPublicKey, privateKey: ECPrivateKey, su
                            (implicit system: ActorSystem) extends PushService[Future, HttpResponse] {
 
 
-  // needed for the future flatMap/onComplete in the end
   implicit val executionContext = system.dispatcher
 
-  def send(subscription: Subscription, payload: String): Future[HttpResponse] = {
-
+  protected def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int): Future[HttpResponse] = {
     val responseFuture: Future[HttpResponse] = Http().singleRequest(HttpRequest(uri = "https://akka.io"))
     responseFuture
   }

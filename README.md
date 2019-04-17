@@ -6,7 +6,8 @@ Scala library for easy Web Push message sending. This library uses latest VAPID 
 
 Using SBT.
 
-    libraryDependencies += "com.zivver" %% "web-push" % "0.1.1"
+    lazy val webPushProject = RootProject(uri("https://github.com/morozov1/web-push.git#master"))
+    lazy val root = (project in file(".")).dependsOn(webPushRef)
 
 # Basic Usage
 
@@ -19,7 +20,7 @@ a GCM API key and VAPID keys.
   private val vapidPrivateKey: PrivateKey = Utils.loadPrivateKey(...server private key...)
 
 // Initialize pushService with VAPID keys and subscriber (mailto or your application domain)
-val pushService = PushService(vapidPublicKey, vapidPrivateKey, "mailto:your-app@example.com")
+val pushService = PushServiceSync(vapidPublicKey, vapidPrivateKey, "mailto:your-app@example.com")
 
 // Create a Subscription from browser subscription data
 val subscription = Subscription("endpoint", "p256dh", "auth")
