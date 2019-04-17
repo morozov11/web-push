@@ -2,7 +2,7 @@ package org.morozov.webpush
 
 import java.math.BigInteger
 import java.security.interfaces.{ECPrivateKey, ECPublicKey}
-import java.security.{KeyFactory, PrivateKey, PublicKey}
+import java.security.{KeyFactory}
 import java.util.Base64
 
 import org.apache.commons.codec.binary.Hex.decodeHex
@@ -19,13 +19,13 @@ object Utils {
     else Base64.getUrlDecoder.decode(base64Encoded)
   }
 
-  def loadPublicKey(encodedPublicKey: String): PublicKey = {
+  def loadPublicKey(encodedPublicKey: String): ECPublicKey = {
     val ecSpec: ECNamedCurveParameterSpec = ECNamedCurveTable.getParameterSpec("prime256v1")
     KeyFactory.getInstance("ECDH", BouncyCastleProvider.PROVIDER_NAME)
       .generatePublic(new ECPublicKeySpec(ecSpec.getCurve.decodePoint(base64Decode(encodedPublicKey)), ecSpec))
   }
 
-  def loadPrivateKey(encodedPrivateKey: String): PrivateKey = {
+  def loadPrivateKey(encodedPrivateKey: String): ECPrivateKey = {
     KeyFactory.getInstance("ECDH", BouncyCastleProvider.PROVIDER_NAME)
       .generatePrivate(new ECPrivateKeySpec(new BigInteger(base64Decode(encodedPrivateKey)),
         ECNamedCurveTable.getParameterSpec("prime256v1")))
