@@ -1,13 +1,13 @@
 
 name := "web-push"
 
-organization := "com.zivver"
+organization := "org.morozov"
 
-version := "0.2.1"
+version := "0.2.2"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.8"
 
-crossScalaVersions := Seq("2.11.8", "2.12.1")
+crossScalaVersions := Seq("2.12.8")
 
 libraryDependencies ++= Seq(
   "com.pauldijou" %% "jwt-core" % "0.10.0",
@@ -28,25 +28,3 @@ publishMavenStyle := true
 publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
-
-pomExtra := (
-  <url>https://github.com/zivver/web-push</url>
-    <licenses>
-      <license>
-        <name>MIT License</name>
-        <url>http://www.opensource.org/licenses/mit-license.php</url>
-        <distribution>repo</distribution>
-      </license>
-    </licenses>
-    <scm>
-      <url>git@github.com:zivver/web-push.git</url>
-      <connection>scm:git:git@github.com:zivver/web-push.git</connection>
-    </scm>
-    <developers>
-      <developer>
-        <id>zivver</id>
-        <name>Zivver</name>
-        <url>https://www.zivver.com</url>
-      </developer>
-    </developers>
-  )

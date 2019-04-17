@@ -1,19 +1,19 @@
-package com.zivver.webpush
+package org.morozov.webpush
 
 import java.security.interfaces.{ECPrivateKey, ECPublicKey}
 import java.util.Base64
 
-import com.zivver.webpush.Encryption.Encrypted
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.ByteArrayEntity
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.message.BasicHeader
+import org.morozov.webpush.Encryption.Encrypted
 import pdi.jwt.Jwt
 import pdi.jwt.JwtAlgorithm.ES256
 
-import scala.concurrent.duration._
+import scala.concurrent.duration.FiniteDuration
 
 /**
   * Push service.

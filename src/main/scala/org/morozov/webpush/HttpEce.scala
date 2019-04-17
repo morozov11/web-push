@@ -1,11 +1,11 @@
-package com.zivver.webpush
+package org.morozov.webpush
 
 import java.nio.ByteBuffer
-import java.security._
 import java.security.interfaces.ECPublicKey
-import javax.crypto._
-import javax.crypto.spec.{GCMParameterSpec, SecretKeySpec}
+import java.security.{Key, KeyPair, PublicKey}
 
+import javax.crypto.spec.{GCMParameterSpec, SecretKeySpec}
+import javax.crypto.{Cipher, KeyAgreement}
 import org.bouncycastle.crypto.digests.SHA256Digest
 import org.bouncycastle.crypto.generators.HKDFBytesGenerator
 import org.bouncycastle.crypto.params.HKDFParameters

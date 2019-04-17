@@ -1,15 +1,14 @@
-package com.zivver.webpush
+package org.morozov.webpush
 
 import java.math.BigInteger
-import java.security._
 import java.security.interfaces.{ECPrivateKey, ECPublicKey}
+import java.security.{KeyFactory, PrivateKey, PublicKey}
 import java.util.Base64
 
+import org.apache.commons.codec.binary.Hex.decodeHex
 import org.bouncycastle.jce.ECNamedCurveTable
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.jce.spec.{ECNamedCurveParameterSpec, ECPrivateKeySpec, ECPublicKeySpec}
-import org.apache.commons.codec.binary.Hex.decodeHex
-
 
 object Utils {
 

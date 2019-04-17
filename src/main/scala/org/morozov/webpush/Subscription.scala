@@ -1,4 +1,4 @@
-package com.zivver.webpush
+package org.morozov.webpush
 
 import java.net.{MalformedURLException, URL}
 import java.security.PublicKey
