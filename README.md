@@ -20,7 +20,8 @@ a GCM API key and VAPID keys.
   private val vapidPrivateKey: PrivateKey = Utils.loadPrivateKey(...server private key...)
 
 // Initialize pushService with VAPID keys and subscriber (mailto or your application domain)
-val pushService = PushServiceSync(vapidPublicKey, vapidPrivateKey, "mailto:your-app@example.com")
+  implicit val httpPostRequest = PushServiceSync(vapidPublicKey, vapidPrivateKey, "http://localhost:8000/")
+  val pushService = new PushService[Id, HttpResponse]()
 
 // Create a Subscription from browser subscription data
 val subscription = Subscription("endpoint", "p256dh", "auth")

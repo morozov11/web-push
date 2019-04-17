@@ -18,6 +18,9 @@ case class PushServiceAsync(publicKey: ECPublicKey, privateKey: ECPrivateKey, su
   implicit val executionContext = system.dispatcher
 
   def send(subscription: Subscription, payload: Option[Array[Byte]], ttl: Int): Future[HttpResponse] = {
+
+    val uri = subscription.endpoint
+
     val responseFuture: Future[HttpResponse] = Http().singleRequest(HttpRequest(uri = "https://akka.io"))
     responseFuture
   }
