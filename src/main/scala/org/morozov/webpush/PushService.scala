@@ -12,8 +12,7 @@ import org.apache.http.message.BasicHeader
 import org.morozov.webpush.Encryption.Encrypted
 import pdi.jwt.Jwt
 import pdi.jwt.JwtAlgorithm.ES256
-
-import scala.concurrent.duration.FiniteDuration
+import scala.concurrent.duration._
 
 /**
   * Push service.
