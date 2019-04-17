@@ -12,7 +12,9 @@ crossScalaVersions := Seq("2.12.8")
 libraryDependencies ++= Seq(
   "com.pauldijou" %% "jwt-core" % "0.10.0",
   "org.apache.httpcomponents" % "fluent-hc" % "4.5.2",
-  "org.bouncycastle" % "bcprov-jdk15on" % "1.55"
+  "org.bouncycastle" % "bcprov-jdk15on" % "1.55",
+  "com.typesafe.akka" %% "akka-actor" % "2.5.22",
+  "com.typesafe.akka" %% "akka-http" % "10.1.8"
 )
 
 publishTo := {

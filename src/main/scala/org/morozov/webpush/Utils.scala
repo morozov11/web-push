@@ -23,12 +23,14 @@ object Utils {
     val ecSpec: ECNamedCurveParameterSpec = ECNamedCurveTable.getParameterSpec("prime256v1")
     KeyFactory.getInstance("ECDH", BouncyCastleProvider.PROVIDER_NAME)
       .generatePublic(new ECPublicKeySpec(ecSpec.getCurve.decodePoint(base64Decode(encodedPublicKey)), ecSpec))
+      .asInstanceOf[ECPublicKey]
   }
 
   def loadPrivateKey(encodedPrivateKey: String): ECPrivateKey = {
     KeyFactory.getInstance("ECDH", BouncyCastleProvider.PROVIDER_NAME)
       .generatePrivate(new ECPrivateKeySpec(new BigInteger(base64Decode(encodedPrivateKey)),
         ECNamedCurveTable.getParameterSpec("prime256v1")))
+      .asInstanceOf[ECPrivateKey]
   }
 
   def toJsonString(json: Map[String, String]): String = {
