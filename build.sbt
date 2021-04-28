@@ -1,11 +1,11 @@
 
 name := "web-push"
 
-organization := "org.morozov"
+organization := "a5000"
 
-version := "0.2.2-sevts"
+version := "0.2.3-sevts"
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.1"
 
 crossScalaVersions := Seq("2.12.8")
 
@@ -27,6 +27,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 publishMavenStyle       := true
-bintrayOrganization     := None
-bintrayRepository := "web-push"
-bintrayPackage := "web-push"
+
+resolvers += "Nexus" at ""
+credentials += Credentials("Sonatype Nexus Repository Manager", "", "admin", "xxx")
+publishTo := Some("Default Role Realm" at "")
